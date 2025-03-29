@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="ima/fondo2.png">
+    <link rel="stylesheet" href="beneficios.css">
+    <title>Terapia Natural - San Juan - Beneficios</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #8ecae6;
+            padding: 15px 20px;
+            color: white;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar .logo {
+            width: 150px;
+        }
+        
+        .navbar .logo img {
+            object-fit: cover;
+            height: 60px;
+        }
+        
+        .menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .menu li {
+            margin: 0 15px;
+        }
+        
+        .menu a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-family: Arial, Helvetica, sans-serif;
+            border: none;
+        }
+        
+        .iniciar-sesion {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 22px;
+            padding: 10px 15px;
+            border-left: 1px solid #52796f;
+        }
+        
+        .iniciar-sesion:hover {
+            color: #e0e0e0;
+        }
+        
+        .registrarse {
+            border: none;
+            color: #ffffff;
+            background-color: #8ecae6;
+            border-radius: 5px;
+            margin-right: 30px;
+        }
+        
+        .registrarse a {
+            font-size: 20px;
+            text-decoration: none;
+            padding: 5px 15px;
+            color: #ffffff;
+        }
+        
+        .registrarse a:hover {
+            color: #023e8a;
+        }
+        /* Estilos del botón hamburguesa */
+        
+        .hamburguesa {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-right: 40px;
+        }
+        
+        .hamburguesa div {
+            width: 34px;
+            height: 4px;
+            background-color: white;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+        /* Responsive */
+        
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #8ecae6;
+                width: 60%;
+                height: 100vh;
+                text-align: center;
+                border-radius: 5px;
+                z-index: 100;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            }
+            .menu li {
+                padding: 15px;
+            }
+            .menu a {
+                font-size: 20px;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                border: none;
+            }
+            .hamburguesa {
+                display: flex;
+            }
+        }
+        
+        .hamburguesa.activado div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .hamburguesa.activado div:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburguesa.activado div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        
+        .menu.activado {
+            display: flex;
+        }
+        
+        .container {
+            margin: 20px;
+            max-width: 90%;
+            width: 100%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .title-container img {
+            width: 50px;
+            height: 50px;
+        }
+        
+        details {
+            background: #f0f0f0;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        summary {
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
+            color: #0073e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        summary:hover {
+            color: #005bb5;
+        }
+        
+        p {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .tipo-masaje {
+            padding-left: 10px;
+            border-left: 1px solid #000;
+        }
+        
+        .benefit-subtit {
+            color: #0077b6;
+            font-weight: bold;
+        }
+        
+        .benefit-long-plass {
+            color: #3d5998;
+        }
+        
+        .benefit-subtit:hover {
+            color: #023e8a;
+        }
+        
+        .benefit-content {
+            padding: 10px;
+            color: #333;
+            opacity: 0;
+            max-height: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow: hidden;
+            transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
+        }
+        
+        details[open] .benefit-content {
+            opacity: 1;
+            max-height: 700px;
+        }
+        /*.hidden-bene {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        
+        .show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .icon {
+            transition: transform 0.3s ease-in-out;
+        }*/
+        
+        details[open] .icon {
+            transform: rotate(180deg);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            summary {
+                font-size: 16px;
+            }
+        }
+        
+        .social-icons {
+            display: flex;
+            /*gap: 2.3rem;*/
+            justify-content: center;
+        }
+        
+        .social-icons ul {
+            list-style: none;
+        }
+        
+        .social-icons ul li {
+            padding-right: 20px;
+            left: 0;
+            line-height: 50px;
+            margin: 0 12px;
+            font-size: 1.5em;
+            width: 45px;
+            height: 45px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 50%;
+            float: left;
+            transition: all 0.5s ease;
+            /*border: 2px solid #272727;*/
+        }
+        
+        .social-icons ul li:hover {
+            transform: scale(1.1);
+            transition: 0.4s ease;
+            border: none;
+        }
+        
+        .social-icons a {
+            color: #272727;
+            border-radius: 50%;
+            font-size: 1.4em;
+            text-decoration: none;
+        }
+        
+        .social-icons ul li .fa-brands .fas {
+            color: #333;
+            margin-top: 16px;
+            transition: all 0.5s ease;
+        }
+        
+        .social-icons ul li:hover #facebook {
+            border: 3px solid #3d5998;
+            box-shadow: 0 0 15px #3d5998;
+            transition: all 0.5s ease;
+        }
+        
+        .social-icons ul li:hover .fa-facebook-f {
+            color: #3d5998;
+            text-shadow: 0 0 15px #3d5998;
+            transition: all 0.5s ease;
+        }
+        
+        .social-icons ul li:hover #x {
+            color: 5px solid #000;
+            box-shadow: 0 0 15px #000;
+            transition: all 0.5s ease;
+        }
+        
+        .social-icons ul li:hover #whatsap {
+            border: 5px solid #4dc247;
+            box-shadow: 0 0 15px #4dc247;
+            transition: all 0.5s ease;
+        }
+        
+        .social-icons ul li:hover .fa-whatsapp {
+            color: #4dc247;
+            text-shadow: 0 0 15px #4dc247;
+            transition: all 0.5s ease;
+        }
+        
+        .social-icons ul li:hover #instagram {
+            border: 5px solid #bc2a8d;
+            box-shadow: 0 0 15px #bc2a8d;
+            transition: all 0.5s ease;
+        }
+        
+        .social-icons ul li:hover .fa-instagram {
+            color: #bc2a8d;
+            text-shadow: 0 0 15px #bc2a8d;
+            transition: all 0.5s ease;
+        }
+        
+        .social-icons ul li:hover #maps {
+            color: #aa2b2d;
+            box-shadow: 0 0 15px #aa2b2d;
+            transition: all 0.5s ease;
+        }
+        
+        .social-icons ul li:hover .fa-map-marker-alt {
+            color: #aa2b2d;
+            text-shadow: 0 0 15px #aa2b2d;
+            transition: all 0.5s ease;
+        }
+        
+        .foter {
+            background-color: #8ecae6;
+            color: #fff;
+            padding: 20px 0;
+        }
+        
+        .container-footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
+        }
+        
+        .sesion-footer {
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+        }
+        
+        .sesion-footer h3 {
+            margin-left: 10px;
+            margin-bottom: 10px;
+            color: #000;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        .sesion-footer ul {
+            list-style: none;
+        }
+        
+        .sesion-footer p {
+            color: #242323;
+        }
+        
+        .sesion-footer ul li {
+            margin: 5px 0;
+            color: #000;
+        }
+        
+        .sesion-footer ul li a {
+            color: #242323;
+            text-decoration: none;
+        }
+        
+        .sesion-footer ul li a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .container-footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        .copyright {
+            color: #000;
+            width: 100%;
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #555;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="inicio2.html"><img src="ima/logo-pagina.png" alt=""></a>
+            </div>
+            <ul class="menu">
+                <li><a href="inicio2.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="servicios2.html"><i class="fas fa-smile-beam"></i> Servicios</a></li>
+                <li><a href="contacto2.html"><i class="fas fa-phone-alt"></i> Contacto</a></li>
+                <li><a href="turnos2.html"><i class="fas fa-calendar-day"></i> Turnos</a></li>
+                <li>
+                    <a href="beneficios2.html"> <i class="fa-solid fa-water"></i> Beneficios</a>
+                </li>
+                <li><a href="login/logiin.php" class="iniciar-sesion"><i class="fa-solid fa-user-plus"></i> Iniciar
+                        sesión</a></li>
+                <li> <button class="registrarse"><a href="login/registro.php"><i class="fa-solid fa-user-plus"></i>
+                            Únete</a></button></li>
+            </ul>
+            <div class="hamburguesa" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector(".menu");
+            const hamburguesa = document.querySelector(".hamburguesa");
+            menu.classList.toggle("activado");
+            hamburguesa.classList.toggle("activado");
+        }
+    </script>
+    <div class="container hidden-bene">
+        <div class="title-container">
+            <img src="ima/png" alt="Beneficios">
+            <h2>Descubre Nuestros Beneficios Exclusivos</h2>
+        </div>
+        <h2 style="text-align: center;">Beneficios De Masajes</h2>
+        <h2 class="tipo-masaje">Masaje Relajante</h2>
+        <p class="descripcion-benefit">El <strong>masaje relajante</strong> es una técnica terapéutica utilizada para aliviar el estrés, reducir la tensión muscular y promover un estado de bienestar general. Su práctica no solo tiene efectos positivos a nivel físico, sino que también
+            impacta de manera favorable en la salud mental y emocional. A continuación, exploramos en detalle sus múltiples beneficios.</p>
+        <details>
+            <summary>Benenficios del masaje relajante <span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p><span class="benefit-subtit">✔ Disminución de la tensión muscular y alivio del dolor</span> <br>• El masaje relajante actúa directamente sobre los músculos, ayudando a liberar nudos y tensiones acumuladas debido al estrés, la mala postura
+                    o la actividad física intensa. La manipulación de los tejidos mejora la elasticidad muscular, aliviando dolencias en zonas como la espalda, cuello, hombros y piernas. <br> <span class="benefit-subtit">✔ Mejora de la circulación sanguínea y linfática </span>                    <br>• Los movimientos suaves y rítmicos del masaje estimulan el flujo sanguíneo, lo que facilita la oxigenación de los tejidos y la eliminación de toxinas acumuladas en el cuerpo. Esto también favorece la circulación linfática, reduciendo
+                    la retención de líquidos y la inflamación. <br> <span class="benefit-subtit">✔ Regulación
+                        de la presión arterial </span> <br>• El masaje ayuda a disminuir la presión arterial al reducir la respuesta del sistema nervioso simpático (responsable del estrés y la activación del cuerpo). Esto es particularmente beneficioso
+                    para personas con hipertensión o problemas cardiovasculares leves. <br><span class="benefit-subtit">✔
+                        Estimulación del sistema inmunológico </span> <br> • El estrés crónico puede debilitar el sistema inmunológico, haciéndonos más vulnerables a enfermedades. Al reducir el estrés y mejorar la circulación, el masaje relajante ayuda
+                    a fortalecer las defensas naturales del organismo. <br> <span class="benefit-subtit">✔ Mejora de la
+                        calidad del sueño </span> <br>• Uno de los efectos más notables del masaje es la inducción de un estado de relajación profunda, lo que facilita un sueño más reparador. La reducción del cortisol (hormona del estrés) y el aumento
+                    de la serotonina y melatonina favorecen un descanso más profundo y de mejor calidad.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Beneficios emocionales y psicologicos <span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p> <span class="benefit-subtit">✔ Reducción del estrés y la ansiedad</span> <br> • El masaje relajante disminuye la producción de cortisol y adrenalina, dos hormonas relacionadas con el estrés, al tiempo que incrementa la liberación de endorfinas
+                    y serotonina, neurotransmisores responsables de la sensación de bienestar. Esto genera una sensación de calma y tranquilidad mental. <br> <span class="benefit-subtit">✔ Mejora del estado de
+                        ánimo</span> <br> • El contacto físico y la sensación de relajación profunda ayudan a liberar tensiones emocionales y mejorar el estado de ánimo. Es una terapia efectiva para quienes padecen episodios de ansiedad, depresión leve
+                    o irritabilidad. <br> <span class="benefit-subtit">✔ Mayor concentración y claridad mental</span>
+                    <br> • El masaje ayuda a despejar la mente al reducir la sobrecarga sensorial y emocional. Esto permite mejorar la concentración, la creatividad y la capacidad de tomar decisiones de manera más serena y efectiva. <br> <span class="benefit-subtit">✔ Ayuda en la gestión emocional </span>                    <br>• El masaje relajante puede contribuir a la liberación de emociones reprimidas, proporcionando un espacio de tranquilidad y seguridad para la introspección y la autoexploración emocional.
+                </p>
+            </div>
+        </details>
+        <details>
+            <summary>Beneficios a largo plazo <span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p>Si el masaje relajante se convierte en un hábito, sus beneficios pueden ser aún más notorios:
+                    <br><br> ✅ <span class="benefit-long-plass">Prevención de enfermedades relacionadas con el estrés, como gastritis, insomnio, fatiga crónica y trastornos cardiovasculares.</span> <br> ✅ <span class="benefit-long-plass">Mayor flexibilidad y movilidad articular, lo que ayuda a prevenir lesiones musculares
+                    y articulares.</span> <br> ✅ <span class="benefit-long-plass">Mejora de la relación con el cuerpo, promoviendo la conciencia corporal y el autocuidado.</span> <br> ✅<span class="benefit-long-plass">Aumento de la productividad, ya que reduce la fatiga mental y física, permitiendo un mejor rendimiento en actividades
+                    diarias.</span>
+                    <br>
+                </p>
+            </div>
+        </details>
+
+        <h2 class="tipo-masaje">Masaje Descontracturante</h2>
+        <p class="descripcion-benefit">El <strong>masaje descontracturante</strong> es una terapia manual que se centra en eliminar tensiones musculares profundas, aliviar contracturas y mejorar la movilidad del cuerpo. A diferencia del masaje relajante, este tipo de masaje es más
+            intenso y se enfoca en zonas específicas con acumulación de tensión, como la espalda, el cuello, los hombros y las piernas. Es ampliamente recomendado para personas con dolores musculares, posturas inadecuadas o estrés acumulado.</p>
+
+
+        <details>
+            <summary>Beneficios físicos del masaje descontracturante <span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p> <span class="benefit-subtit">✔ Alivio del dolor muscular y reducción de contracturas </span><br> Las contracturas musculares pueden causar dolor localizado o irradiado a otras zonas del cuerpo. Este masaje trabaja sobre los músculos afectados,
+                    liberando nudos de tensión y permitiendo una mejor relajación muscular. <br> <span class="benefit-subtit">✔ Eliminación de puntos gatillo</span> <br> Los puntos gatillo son áreas hiperirritables dentro de un músculo que generan dolor,
+                    tanto en el lugar específico como en zonas reflejas del cuerpo. Con maniobras profundas y presiones controladas, el masaje desactiva estos puntos, reduciendo molestias crónicas. <br> <span class="benefit-subtit">✔ Mejora de la circulación sanguínea y linfática</span>                    <br> La manipulación de los tejidos estimula el flujo sanguíneo, lo que permite que los músculos reciban más oxígeno y nutrientes esenciales para su recuperación. Además, mejora el drenaje linfático, ayudando a eliminar toxinas y reduciendo
+                    la inflamación. <br> <span class="benefit-subtit">✔ Disminución de la rigidez muscular
+                        y aumento de la flexibilidad</span> <br> Este tipo de masaje ayuda a relajar las fibras musculares tensas, favoreciendo una mejor movilidad y evitando restricciones en el movimiento. Esto es especialmente útil para deportistas
+                    y personas que realizan actividades repetitivas o sedentarias. <br> <span class="benefit-subtit">✔
+                        Prevención
+                        de lesiones musculares y articulares </span> <br> Cuando los músculos están tensos o sobrecargados, el riesgo de lesiones aumenta. El masaje descontracturante ayuda a mantener la musculatura en buen estado, reduciendo la posibilidad
+                    de esguinces, contracturas crónicas y problemas articulares. <br> <span class="benefit-subtit">✔
+                        Mejora de la postura corporal </span> <br> Las tensiones musculares prolongadas pueden afectar la alineación del cuerpo, causando desbalances posturales. Al liberar la musculatura de la espalda y el cuello, el masaje contribuye
+                    a una postura más erguida y natural. <br> <span class="benefit-subtit">✔ Reducción de la fatiga
+                        muscular </span><br> Después de actividades físicas intensas o jornadas laborales agotadoras, los músculos pueden estar sobrecargados y fatigados. Este masaje ayuda a recuperarlos más rápido, evitando molestias prolongadas. <br>
+                </p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Beneficios psicológicos y emocionales <span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p> <span class="benefit-subtit">✔ Reducción del estrés y la ansiedad</span> <br> El dolor muscular persistente puede aumentar los niveles de estrés y tensión emocional. Al liberar los músculos, el masaje también ayuda a reducir la producción
+                    de cortisol (hormona del estrés) y promueve un estado de relajación general. <br> <span class="benefit-subtit">✔ Aumento de la sensación de bienestar </span> <br> El masaje estimula la producción de endorfinas, serotonina y dopamina,
+                    neurotransmisores responsables del bienestar y la felicidad. Esto genera una sensación de alivio y relajación duradera. <br> <span class="benefit-subtit">✔ Mejora de la concentración y claridad
+                        mental</span> <br> El dolor crónico y la tensión muscular pueden dificultar la concentración y la productividad. Al reducir estas molestias, el masaje favorece un estado mental más despejado y enfocado. <br> <span class="benefit-subtit">✔ Alivio de la fatiga mental</span>                    <br> El cuerpo y la mente están conectados, y cuando los músculos están tensos, el cerebro también puede experimentar fatiga. Un masaje descontracturante ayuda a liberar esta carga y a sentir mayor ligereza mental.
+                    <br> <span class="benefit-subtit">✔ Favorece un sueño reparador</span> <br> Muchas personas con dolores musculares tienen dificultades para dormir bien. El masaje descontracturante ayuda a relajar el cuerpo, facilitando un sueño más
+                    profundo y sin interrupciones. <br>
+                </p>
+            </div>
+        </details>
+        <details>
+            <summary> Beneficios a largo plazo <span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p>✅ <span class="benefit-long-plass">Corrección y mantenimiento de la postura:</span> Ayuda a aliviar tensiones acumuladas por malas posturas y evita futuros desajustes musculares. <br> ✅ Mayor resistencia física: Los músculos recuperan
+                    su flexibilidad y tono adecuado, lo que permite un mejor desempeño en actividades diarias y deportivas. <br> ✅ <span class="benefit-long-plass">Prevención de dolencias crónicas:</span> Reduce la probabilidad de desarrollar problemas
+                    como lumbalgia, cervicalgia o dolores recurrentes de cabeza. <br> ✅ <span class="benefit-long-plass">Mejor adaptación
+                        al estrés:</span> El cuerpo aprende a liberar tensiones con mayor facilidad, evitando que se acumulen a nivel físico y emocional. <br> ✅ <span class="benefit-long-plass">Menor propensión a
+                        calambres y espasmos musculares:</span> Al mejorar la oxigenación muscular y la circulación sanguínea, se reducen los espasmos involuntarios.
+                    <br>
+                </p>
+            </div>
+        </details>
+
+        <h2 class="tipo-masaje">Masaje Facial</h2>
+        <p>El <strong>masaje facial</strong> es una técnica terapéutica y estética que ayuda a relajar los músculos del rostro, mejorar la circulación sanguínea y promover un aspecto más saludable y rejuvenecido. Este tipo de masaje no solo aporta beneficios
+            físicos, sino que también tiene efectos positivos en la salud mental y emocional. A continuación, exploramos en detalle los múltiples beneficios del masaje facial.</p>
+        <details>
+            <summary>Beneficios físicos del masaje facial <span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p> <span class="benefit-subtit">✔ Estimulación de la circulación sanguínea</span> <br> El masaje facial activa la circulación sanguínea en el rostro, lo que permite que la piel reciba más oxígeno y nutrientes. Esto se traduce en un cutis
+                    más luminoso, fresco y saludable. <br> <span class="benefit-subtit">✔ Drenaje linfático y eliminación de toxinas </span> <br> A través de movimientos suaves y rítmicos, el masaje facial estimula el sistema linfático, ayudando a eliminar
+                    toxinas y reduciendo la hinchazón facial. Es especialmente útil para desinflamar la zona de los ojos y mejorar el tono de la piel. <br> <span class="benefit-subtit">✔ Reducción de arrugas y líneas de expresión</span>
+                    <br> El masaje facial estimula la producción de colágeno y elastina, dos proteínas esenciales para mantener la piel firme y elástica. Con el tiempo, esto puede ayudar a prevenir y reducir la aparición de arrugas y líneas de expresión.
+                    <br> <span class="benefit-subtit">✔ Relajación de los músculos faciales</span> <br> El estrés y la tensión diaria pueden acumularse en los músculos del rostro, causando rigidez y gestos tensos. El masaje ayuda a relajar estos músculos,
+                    suavizando las expresiones faciales y dando una apariencia más descansada. <br><span class="benefit-subtit">✔ Reafirmación y tonificación de la piel </span> <br> Los movimientos específicos del masaje facial ayudan a tonificar los
+                    músculos del rostro, evitando la flacidez y dando un efecto de lifting natural sin necesidad de procedimientos invasivos. <br> <span class="benefit-subtit">✔ Hidratación y mejor absorción de productos</span>
+                    <br> Cuando se realiza con aceites o cremas hidratantes, el masaje facial mejora la absorción de estos productos, potenciando sus efectos y manteniendo la piel más hidratada y nutrida. <br>
+                </p>
+            </div>
+        </details>
+        <details>
+            <summary>Beneficios emocionales y psicológicos<span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p> <span class="benefit-subtit">✔ Reducción del estrés y la ansiedad</span> <br> El masaje facial activa el sistema nervioso parasimpático, lo que induce un estado de relajación profunda. Esto ayuda a reducir los niveles de estrés y ansiedad,
+                    promoviendo un bienestar general.
+                    <br><span class="benefit-subtit">✔ Mejora del estado de ánimo</span> <br> Al estimular puntos de presión en el rostro, el masaje puede liberar endorfinas, serotonina y dopamina, neurotransmisores responsables de la sensación de bienestar
+                    y felicidad. <br><span class="benefit-subtit">✔ Alivio de
+                    la fatiga mental</span> <br> Las tensiones en el rostro pueden estar relacionadas con el agotamiento mental. Un masaje facial ayuda a relajar la mente y a despejar la sensación de fatiga acumulada.
+                    <br>
+                </p>
+            </div>
+        </details>
+        <details>
+            <summary>Beneficios específicos según el tipo de piel<span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p>🔹 <span class="benefit-long-plass">Para pieles secas:</span> Estimula la producción natural de aceites esenciales y mejora la hidratación.
+                    <br> 🔹 <span class="benefit-long-plass">Para pieles grasas o con acné:</span> Ayuda a eliminar toxinas y a regular la producción de sebo, mejorando la apariencia de la piel.
+                    <br> 🔹 <span class="benefit-long-plass">Para pieles maduras:</span> Estimula la producción de colágeno, ayudando a combatir la flacidez y mejorar la firmeza. <br> 🔹<span class="benefit-long-plass">Para pieles sensibles:</span> Ayuda
+                    a calmar la piel y reducir la irritación si se realiza con movimientos suaves y productos adecuados. <br>
+                </p>
+            </div>
+        </details>
+        <details>
+            <summary>Beneficios a largo plazo<span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p>Si el masaje facial se realiza de manera constante, sus efectos pueden ser aún más notorios: <br> <br> ✅ <span class="benefit-long-plass">Piel más firme y elástica:</span> Mayor producción de colágeno y elastina con el tiempo. <br> ✅
+                    <span class="benefit-long-plass">Reducción visible de hinchazón y ojeras:</span> Mejora del drenaje linfático y reducción de retención de líquidos. <br> ✅ <span class="benefit-long-plass">Menor propensión a brotes de acné o irritación:</span>                    Mejor oxigenación y eliminación de toxinas. <br> ✅<span class="benefit-long-plass">Rostro más relajado y expresiones más suaves:</span> Reducción de la tensión muscular acumulada. <br> ✅ <span class="benefit-long-plass">Prevención del envejecimiento prematuro:</span>                    Menos estrés oxidativo en la piel. <br>
+                </p>
+            </div>
+        </details>
+        <details>
+            <summary>Trabajo Remoto <span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p>Flexibilidad laboral con opciones de teletrabajo desde casa o espacios de coworking.</p>
+            </div>
+        </details>
+
+        <h2 class="tipo-masaje">Masaje Linfatico</h2>
+        <p>El <strong>masaje linfático</strong> o <strong>drenaje linfático manual</strong> es una técnica terapéutica que estimula el sistema linfático para mejorar la circulación de la linfa, reducir la retención de líquidos y eliminar toxinas del cuerpo.
+            Se realiza con movimientos suaves, lentos y rítmicos para activar el flujo linfático y fortalecer el sistema inmunológico. Este tipo de masaje es ampliamente utilizado en medicina estética, rehabilitación y bienestar general debido a sus múltiples
+            beneficios tanto a nivel físico como emocional.
+        </p>
+        <details>
+            <summary>Beneficios físicos del masaje linfático <span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p><span class="benefit-subtit">✔ Eliminación de toxinas y desechos del cuerpo <br></span> El sistema linfático es clave en la eliminación de sustancias de desecho, grasas y toxinas. Este masaje favorece el drenaje y la expulsión de estas
+                    sustancias, contribuyendo a la desintoxicación natural del organismo. <br><span class="benefit-subtit">✔ Reducción de la retención de líquidos y desinflamación </span> <br> Al estimular el flujo linfático, se reduce la acumulación
+                    de líquidos en los tejidos, aliviando la hinchazón en piernas, abdomen y rostro. Es especialmente útil en casos de edemas, celulitis y después de cirugías. <br><span class="benefit-subtit">✔ Mejora
+                        de la circulación sanguínea</span> <br> El drenaje linfático favorece una mejor oxigenación de los tejidos al mejorar el flujo de líquidos en el cuerpo. Esto ayuda a reducir la sensación de pesadez en las extremidades y mejora
+                    la apariencia de la piel. <br><span class="benefit-subtit">✔
+                        Refuerzo del sistema inmunológico </span> <br> El masaje linfático estimula la producción de glóbulos blancos y linfocitos, fundamentales en la defensa del organismo contra infecciones y enfermedades. <br><span class="benefit-subtit">✔ Reducción de la celulitis y mejora del aspecto de
+                        la piel</span> <br> Al mejorar la circulación y eliminar toxinas, se favorece una piel más firme y lisa, reduciendo la apariencia de celulitis y previniendo la flacidez. <br><span class="benefit-subtit">✔ Ayuda en la recuperación postquirúrgica</span><br>                    Es muy recomendado después de cirugías estéticas (como liposucción o abdominoplastia) para reducir la inflamación, evitar fibrosis y acelerar la cicatrización. <br><span class="benefit-subtit">✔ Alivio de piernas
+                        cansadas y pesadas </span> <br> Las personas que permanecen de pie o sentadas por largos períodos pueden beneficiarse de este masaje para aliviar la sensación de pesadez y mejorar la movilidad.
+                    <br><span class="benefit-subtit"></span> ✔ Reducción de hematomas y cicatrices <br> Al estimular la circulación, se acelera la reabsorción de moretones y la regeneración de tejidos, favoreciendo una mejor cicatrización. <br>
+                </p>
+            </div>
+        </details>
+        <details>
+            <summary>Beneficios emocionales y psicológicos <span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p> <span class="benefit-subtit"></span> ✔ Reducción del estrés y la ansiedad <br> Los movimientos suaves y rítmicos del masaje linfático generan una sensación de relajación profunda, reduciendo los niveles de cortisol (hormona del estrés)
+                    y favoreciendo la sensación de bienestar.
+                    <br><span class="benefit-subtit"></span> ✔ Mejora del sueño y relajación profunda <br> El masaje linfático induce un estado de relajación que puede mejorar la calidad del sueño y ayudar a personas con insomnio o problemas de descanso.
+                    <br><span class="benefit-subtit"></span> ✔ Sensación de ligereza y bienestar general <br> Muchas personas experimentan una sensación de alivio y ligereza en el cuerpo después de una sesión de drenaje linfático, ya que se reduce la
+                    inflamación y mejora la oxigenación de los tejidos. <br>
+                </p>
+            </div>
+        </details>
+        <details>
+            <summary>Beneficios específicos según la condición o necesidad <span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p>🔹 <span class="benefit-subtit">Para mujeres embarazadas:</span> Alivia la retención de líquidos y la hinchazón en piernas y pies, especialmente en los últimos meses del embarazo. <br>🔹<span class="benefit-subtit"> Para deportistas:</span>                    Ayuda a eliminar toxinas acumuladas después del ejercicio y reduce la inflamación muscular. <br>🔹<span class="benefit-subtit"> Para personas con
+                        problemas circulatorios:</span> Es útil para quienes padecen insuficiencia venosa o varices, ya que mejora el retorno venoso. <br> 🔹<span class="benefit-subtit"> Para pacientes
+                        postquirúrgicos:</span> Reduce edemas, acelera la recuperación y previene la fibrosis después de cirugías plásticas o reparadoras. <br> 🔹
+                    <span class="benefit-subtit"> Para personas con linfedema:</span> Mejora la circulación linfática en personas con acumulación de líquidos debido a problemas en el sistema linfático.
+                    <br>
+                </p>
+            </div>
+        </details>
+        <details>
+            <summary>Beneficios a largo plazo<span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p>Si el masaje linfático se incorpora de manera regular en la rutina de bienestar, sus beneficios se multiplican: <br> <br> ✅ <span class="benefit-long-plass">Mayor resistencia del sistema
+                        inmunológico.</span> <br> ✅ Piel más saludable y luminosa debido a la eliminación de toxinas.
+                    <br> ✅ <span class="benefit-long-plass">Menos tendencia a la retención de líquidos y la
+                        inflamación.</span> <br> ✅ <span class="benefit-long-plass">Mejor circulación sanguínea y
+                        linfática a lo largo del tiempo.</span> <br> ✅
+                    <span class="benefit-long-plass">Mayor sensación de ligereza y bienestar corporal.</span>
+                    <br>
+                </p>
+            </div>
+        </details>
+
+        <h2 class="tipo-masaje">Masaje Circulatorio</h2>
+        <p>El <strong>masaje circulatorio</strong> es una técnica terapéutica enfocada en mejorar el flujo sanguíneo y linfático en el cuerpo. Se caracteriza por movimientos suaves, rítmicos y en dirección al corazón, ayudando a reducir la retención de líquidos,
+            aliviar la sensación de pesadez en las extremidades y mejorar la oxigenación de los tejidos. Este tipo de masaje es ampliamente utilizado para tratar problemas circulatorios, fatiga, estrés y como complemento en tratamientos estéticos.
+        </p>
+        <details>
+            <summary>Beneficios físicos del masaje circulatorio <span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p> <span class="benefit-subtit">✔ Mejora de la circulación sanguínea </span> <br> El masaje estimula el flujo de sangre hacia los músculos y tejidos, mejorando el transporte de oxígeno y nutrientes. Esto ayuda a evitar problemas como calambres,
+                    sensación de frío en extremidades y várices. <br> <span class="benefit-subtit">✔ Reducción de la
+                        retención de líquidos y edemas</span> <br> Al mejorar la circulación venosa y linfática, se facilita la eliminación de líquidos acumulados, reduciendo la hinchazón en piernas, tobillos y otras zonas propensas a la retención. <br>
+                    <span class="benefit-subtit">✔ Eliminación de toxinas y desechos metabólicos </span> <br> El masaje activa el sistema linfático, favoreciendo la eliminación de toxinas y desechos metabólicos acumulados en los tejidos. Esto contribuye
+                    a una piel más saludable y un organismo más limpio. <br><span class="benefit-subtit">✔ Prevención y
+                        alivio
+                        de várices y arañitas vasculares</span>
+                    <br> El masaje circulatorio ayuda a fortalecer las paredes de los vasos sanguíneos y a mejorar el retorno venoso, reduciendo la presión en las venas y previniendo la aparición de várices y arañitas vasculares. <br> <span class="benefit-subtit">✔
+                        Alivio de piernas cansadas y pesadas </span><br> Es ideal para personas que permanecen mucho tiempo de pie o sentadas, ya que estimula el retorno venoso y evita la sensación de pesadez en las piernas. <br><span class="benefit-subtit">✔ Aceleración de la recuperación muscular</span>                    <br> Después del ejercicio o una actividad física intensa, este masaje ayuda a eliminar el ácido láctico y otros desechos metabólicos acumulados en los músculos, reduciendo la fatiga y los dolores musculares. <br><span class="benefit-subtit">✔ Mejora del tono y aspecto de la piel </span>                    <br> Al estimular la circulación sanguínea, la piel recibe más oxígeno y nutrientes, lo que favorece una apariencia más firme, luminosa y saludable. <br>
+                </p>
+            </div>
+        </details>
+        <details>
+            <summary>Beneficios emocionales y psicológicos <span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p><span class="benefit-subtit">✔ Reducción del estrés y la ansiedad </span><br> El masaje circulatorio no solo tiene beneficios físicos, sino que también proporciona una sensación de relajación y bienestar general, reduciendo los niveles
+                    de estrés y ansiedad. <br><span class="benefit-subtit"> ✔ Mejora del estado de ánimo</span> <br> Al activar la circulación, el cuerpo libera endorfinas y serotonina, neurotransmisores que generan una sensación de bienestar y felicidad.
+                    <br> <span class="benefit-subtit">✔ Aumento de la energía y vitalidad </span><br> Al mejorar la oxigenación de los tejidos y la eliminación de toxinas, el cuerpo experimenta una mayor sensación de energía y menor fatiga. <br>
+                </p>
+            </div>
+        </details>
+        <details>
+            <summary>Beneficios específicos según la condición o necesidad<span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p>🔹 <span class="benefit-long-plass"></span> Para personas con problemas circulatorios: Mejora el retorno venoso y ayuda a prevenir várices.
+                    <br> 🔹 <span class="benefit-long-plass"></span>Para deportistas: Ayuda en la recuperación muscular y previene lesiones. <br> 🔹 <span class="benefit-long-plass"></span>Para personas sedentarias: Estimula la circulación y evita la
+                    sensación de piernas cansadas. <br> 🔹 <span class="benefit-long-plass"></span>Para mujeres embarazadas: Alivia la hinchazón en piernas y pies causada por la retención de líquidos. <br> 🔹
+                    <span class="benefit-long-plass"></span>Para personas con celulitis: Favorece la eliminación de toxinas y mejora la firmeza de la piel. <br>
+                </p>
+            </div>
+        </details>
+        <details>
+            <summary>Beneficios a largo plazo <span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p>Si el masaje circulatorio se realiza de manera frecuente, sus efectos se potencian con el tiempo:
+                    <br>
+                    <br> ✅ <span class="benefit-long-plass">Menos tendencia a la retención de líquidos y edemas.</span>
+                    <br> ✅<span class="benefit-long-plass">Prevención de problemas venosos
+                        como várices y arañitas.</span> <br> ✅<span class="benefit-long-plass"> Mayor
+                        oxigenación de los tejidos y mejor aspecto de la piel.</span> <br> ✅<span class="benefit-long-plass">Menor sensación de fatiga y más
+                        energía en el día a día.</span> <br> ✅ <span class="benefit-long-plass">Mayor capacidad de
+                        recuperación muscular después del ejercicio.</span> <br>
+                </p>
+            </div>
+        </details>
+
+        <h2 class="tipo-masaje">Masaje Deportivo</h2>
+        <p>El <strong>masaje deportivo</strong> es una técnica terapéutica diseñada para mejorar el rendimiento, prevenir lesiones y acelerar la recuperación muscular en atletas y personas activas. Se adapta a las necesidades específicas del deportista según
+            el tipo de ejercicio, la intensidad y el momento en que se aplique (antes, durante o después de la actividad física). <br> A diferencia de un masaje relajante o descontracturante, el masaje deportivo combina diferentes maniobras como amasamientos
+            profundos, fricciones, percusiones y estiramientos, con el objetivo de mejorar la flexibilidad, liberar tensiones musculares y optimizar la recuperación.
+        </p>
+        <details>
+            <summary>Beneficios físicos del masaje deportivo <span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p> <span class="benefit-subtit"> ✔ Mejora la circulación sanguínea y el oxígeno en los músculos</span> <br> El masaje aumenta el flujo sanguíneo, permitiendo que los músculos reciban más oxígeno y nutrientes. Esto mejora su rendimiento y
+                    acelera la eliminación de toxinas acumuladas tras el ejercicio. <br> <span class="benefit-subtit">✔ Reducción de la fatiga muscular</span> <br> Ayuda a disminuir la sensación de pesadez y rigidez muscular, evitando que el cansancio
+                    afecte el rendimiento deportivo. <br> <span class="benefit-subtit">✔ Prevención y tratamiento de lesiones </span><br> Al trabajar sobre las fibras musculares y articulaciones, se reducen las probabilidades de sufrir lesiones como contracturas,
+                    esguinces o tendinitis. También ayuda en la rehabilitación de lesiones preexistentes. <br> <span class="benefit-subtit">✔ Eliminación
+                    del ácido láctico y toxinas</span> <br> El masaje estimula el drenaje de sustancias de desecho acumuladas en los músculos tras la actividad física, reduciendo el riesgo de calambres y dolor post-entrenamiento. <br> <span class="benefit-subtit">✔ Aumento de la flexibilidad
+                    y movilidad articular </span><br> Al relajar y estirar los músculos, se mejora la amplitud de movimiento de las articulaciones, evitando rigidez y limitaciones en el rendimiento físico. <br><span class="benefit-subtit">✔ Alivio del dolor y reducción de contracturas</span>
+                    <br> Es eficaz para eliminar tensiones musculares, aliviar puntos gatillo y reducir molestias ocasionadas por entrenamientos intensos o malas posturas. <br> <span class="benefit-subtit">✔ Recuperación más rápida después del ejercicio</span>                    <br> El masaje deportivo acelera la regeneración muscular, disminuyendo el tiempo de recuperación entre sesiones de entrenamiento o competiciones. <br>
+                </p>
+            </div>
+        </details>
+        <details>
+            <summary>Beneficios emocionales y psicológicos<span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p>✔ Reducción del estrés y la ansiedad <br> El deporte, especialmente en niveles competitivos, puede generar altos niveles de estrés. Este masaje ayuda a relajar el cuerpo y la mente, mejorando la concentración y el enfoque. <br> ✔ Mejora
+                    del sueño y descanso <br> Al liberar la tensión muscular y reducir el estrés, se favorece un descanso más profundo y reparador. <br> ✔ Aumento de la confianza y motivación <br> Un cuerpo libre de molestias y bien preparado para el
+                    esfuerzo físico ayuda a los atletas a sentirse más seguros y motivados en sus entrenamientos y competiciones. <br>
+                </p>
+            </div>
+        </details>
+        <details>
+            <summary>Tipos de masaje deportivo y sus beneficios específicos<span class="icon">▼</span></summary>
+            <div class="benefit-content">
+                <p>🔹 <span class="benefit-long-plass">Masaje precompetitivo:</span> Se aplica antes del ejercicio para preparar los músculos, aumentar la circulación y reducir la rigidez. <br> 🔹 <span class="benefit-long-plass">Masaje postcompetitivo:</span>                    Se realiza después del esfuerzo físico para eliminar toxinas, reducir la fatiga y evitar lesiones. <br> 🔹<span class="benefit-long-plass">Masaje de mantenimiento:</span> Se aplica de manera regular en deportistas para mejorar la flexibilidad,
+                    prevenir lesiones y optimizar el rendimiento. <br> 🔹 <span class="benefit-long-plass">Masaje de rehabilitación:</span> Se utiliza en caso de lesiones para acelerar la recuperación y mejorar la movilidad. <br>
+                </p>
+            </div>
+        </details>
+        <details>
+            <summary>Beneficios a largo plazo<span class="icon">▼</span></summary>
+            <div class="benefit-content hidden-bene">
+                <p> Si el masaje deportivo se incorpora regularmente en la rutina de entrenamiento, sus efectos se potencian con el tiempo: <br> <br> ✅ <span class="benefit-long-plass">Menor riesgo de lesiones y mayor resistencia muscular.</span> <br> ✅
+                    <span class="benefit-long-plass">Músculos más flexibles y articulaciones más móviles.
+                        </span> <br> ✅ <span class="benefit-long-plass">Recuperación más rápida y menos dolores post-entrenamiento. </span><br> ✅ <span class="benefit-long-plass">Mayor rendimiento en entrenamientos y competiciones.</span>                    <br> ✅
+                    <span class="benefit-long-plass">Mejor calidad de vida y menor acumulación de tensiones musculares.</span> <br>
+                </p>
+            </div>
+        </details>
+
+        <h2 class="tipo-masaje">Masaje de Reflexoliga Podal</h2>
+        <p>La <strong>reflexología podal</strong> es una terapia basada en la idea de que los pies contienen puntos reflejos conectados con diferentes órganos y sistemas del cuerpo. A través de presiones y masajes en estas zonas específicas, se busca equilibrar
+            el organismo, mejorar la salud y estimular la autorregulación del cuerpo. Esta técnica se fundamenta en la medicina tradicional china y es utilizada para aliviar dolores, reducir el estrés, mejorar la circulación y favorecer el bienestar general.
+            <details>
+                <summary>Beneficios físicos del masaje linfático <span class="icon">▼</span></summary>
+                <div class="benefit-content hidden-bene">
+                    <p>La <strong>reflexología podal</strong> es una terapia basada en la idea de que los pies contienen puntos reflejos conectados con diferentes órganos y sistemas del cuerpo. A través de presiones y masajes en estas zonas específicas,
+                        se busca equilibrar el organismo, mejorar la salud y estimular la autorregulación del cuerpo. Esta técnica se fundamenta en la medicina tradicional china y es utilizada para aliviar dolores, reducir el estrés, mejorar la circulación
+                        y favorecer el bienestar general.
+                    </p>
+                </div>
+            </details>
+            <details>
+                <summary>Beneficios físicos de la reflexología podal<span class="icon">▼</span></summary>
+                <div class="benefit-content hidden-bene">
+                    <p> <span class="benefit-subtit">✔ Mejora la circulación sanguínea y linfática </span> <br> El masaje en los pies estimula el flujo sanguíneo, facilitando la llegada de oxígeno y nutrientes a los órganos y tejidos. También favorece el
+                        drenaje linfático, ayudando a eliminar toxinas y reducir la retención de líquidos. <br> <span class="benefit-subtit">✔ Alivio del dolor y relajación muscular </span><br> Al estimular puntos reflejos específicos, la reflexología
+                        puede aliviar tensiones musculares, dolores de cabeza, migrañas, molestias en la espalda y otras dolencias. <br> <span class="benefit-subtit">✔ Equilibrio del sistema nervioso</span> <br> Los pies contienen terminaciones nerviosas
+                        conectadas con todo el cuerpo. La estimulación de estos puntos ayuda a relajar el sistema nervioso, reducir el estrés y mejorar el estado de ánimo. <br> <span class="benefit-subtit">✔ Fortalecimiento del sistema inmunológico</span>                        <br> La reflexología estimula el sistema linfático y mejora la función de los órganos encargados de la eliminación de toxinas, lo que fortalece las defensas del organismo.
+                        <br><span class="benefit-subtit">✔ Regulación del sistema digestivo </span> <br> Al trabajar puntos reflejos asociados con el estómago, intestinos e hígado, se mejora la digestión y se reducen problemas como el estreñimiento, la
+                        acidez o la hinchazón abdominal. <br> <span class="benefit-subtit">✔ Reducción del insomnio y mejora del sueño </span> <br> El masaje en los pies induce una profunda relajación, lo que ayuda a regular el ciclo del sueño y combatir
+                        el insomnio. <br>
+                    </p>
+                </div>
+            </details>
+            <details>
+                <summary>Beneficios emocionales y psicológicos<span class="icon">▼</span></summary>
+                <div class="benefit-content hidden-bene">
+                    <p>✔ Reducción del estrés y la ansiedad <br> El masaje en los pies libera tensiones acumuladas y genera una sensación de bienestar inmediato, disminuyendo los niveles de cortisol (hormona del estrés).
+                        <br> ✔ Sensación de bienestar y equilibrio emocional <br> Al estimular puntos reflejos que influyen en la liberación de endorfinas y serotonina, se mejora el estado de ánimo y se reducen los síntomas de ansiedad y depresión. <br>                        ✔ Mayor conexión con el cuerpo <br> La reflexología fomenta una mayor conciencia corporal, ayudando a identificar zonas de tensión o malestar que pueden estar relacionadas con el estilo de vida o emociones reprimidas. <br>
+                    </p>
+                </div>
+            </details>
+            <details>
+                <summary>Beneficios específicos según la condición o necesidad<span class="icon">▼</span></summary>
+                <div class="benefit-content hidden-bene">
+                    <p>🔹 <span class="benefit-long-plass">Para personas con estrés y ansiedad:</span> Ayuda a relajar la mente y el cuerpo. <br> 🔹 <span class="benefit-long-plass">Para quienes sufren de dolores musculares o articulares:</span> Alivia la
+                        tensión y mejora la movilidad. <br> 🔹<span class="benefit-long-plass">Para mejorar la digestión:</span> Estimula los órganos digestivos y reduce molestias como el estreñimiento. <br> 🔹<span class="benefit-long-plass">Para mejorar la circulación:</span>                        Favorece el retorno venoso y alivia la hinchazón en los pies y piernas. <br> 🔹 <span class="benefit-long-plass">Para personas con insomnio:</span> Induce un estado de relajación profunda que mejora el descanso. <br> 🔹 <span class="benefit-long-plass">Para fortalecer el sistema inmunológico:</span>                        Favorece la eliminación de toxinas y refuerza las defensas. <br>
+
+                    </p>
+                </div>
+            </details>
+            <details>
+                <summary>Beneficios a largo plazo<span class="icon">▼</span></summary>
+                <div class="benefit-content hidden-bene">
+                    <p>Si la reflexología podal se practica de manera regular, sus efectos se potencian con el tiempo:
+                        <br><br> ✅ <span class="benefit-long-plass">Mejor regulación del sistema nervioso y hormonal.</span>
+                        <br> ✅ <span class="benefit-long-plass">Menos episodios de estrés,
+                        ansiedad e insomnio.</span> <br> ✅ <span class="benefit-long-plass">Mejora de la circulación
+                        sanguínea y linfática. </span><br> ✅ <span class="benefit-long-plass">Mayor resistencia
+                        a enfermedades y fortalecimiento</span> del sistema inmune. <br> ✅<span class="benefit-long-plass"> Mayor relajación y bienestar general.</span> <br>
+                    </p>
+                </div>
+            </details>
+
+            <h2 class="tipo-masaje">Masaje de cervical</h2>
+            <p>El <strong>masaje cervical</strong> es una técnica terapéutica enfocada en aliviar tensiones y dolores en la zona del cuello, los hombros y la parte alta de la espalda. Debido al estilo de vida moderno, muchas personas experimentan molestias
+                cervicales por el estrés, las malas posturas, el uso excesivo de dispositivos electrónicos o la falta de movimiento. Este tipo de masaje no solo proporciona un alivio inmediato, sino que también mejora la circulación, reduce la rigidez
+                y ayuda a prevenir problemas más graves como las contracturas crónicas o la cervicobraquialgia (dolor que se extiende desde el cuello hasta los brazos).
+            </p>
+            <details>
+                <summary>Beneficios físicos del masaje cervical<span class="icon">▼</span></summary>
+                <div class="benefit-content">
+                    <p> <span class="benefit-subtit">✔ Alivio del dolor y la tensión muscular</span> <br> Uno de los beneficios más inmediatos del masaje cervical es la reducción del dolor y la rigidez en la zona del cuello, hombros y parte superior de la
+                        espalda. Esto se debe a que se liberan contracturas y se mejora la flexibilidad de los músculos.
+                        <br> <span class="benefit-subtit">✔ Mejora de la circulación sanguínea</span>
+                        <br> El masaje estimula el flujo sanguíneo en la zona cervical, facilitando el aporte de oxígeno y nutrientes a los músculos, lo que acelera su recuperación y disminuye la inflamación. <br><span class="benefit-subtit">✔
+                        Reducción de los mareos y vértigos</span>
+                        <br> Muchas veces, los mareos y vértigos están relacionados con una mala circulación en la zona cervical o con la tensión en los músculos del cuello. Un buen masaje puede aliviar estos síntomas y mejorar el equilibrio. <br>
+                        <span class="benefit-subtit">✔ Prevención de jaquecas y migrañas</span> <br> Las cefaleas tensionales y migrañas pueden estar provocadas por la tensión acumulada en la zona cervical. Un masaje bien aplicado ayuda a relajar los
+                        músculos y disminuir la frecuencia e intensidad de los dolores de cabeza. <br> <span class="benefit-subtit">✔ Corrección de la
+                        postura</span> <br> El masaje cervical ayuda a relajar los músculos sobrecargados por malas posturas, lo que facilita la alineación correcta de la columna y previene problemas como la rectificación cervical. <br><span class="benefit-subtit">✔ Disminución del estrés y la fatiga muscular</span>                        <br> El cuello y los hombros son zonas donde se acumula mucha tensión debido al estrés diario. Un masaje en esta área ayuda a liberar la presión y aporta una sensación de bienestar inmediato. <br>
+                    </p>
+                </div>
+            </details>
+            <details>
+                <summary>Beneficios emocionales y psicológicos<span class="icon">▼</span></summary>
+                <div class="benefit-content">
+                    <p><span class="benefit-subtit">✔ Reducción del estrés y la ansiedad </span><br> El masaje cervical no solo trabaja a nivel físico, sino que también genera un efecto relajante en el sistema nervioso, disminuyendo la ansiedad y el estrés
+                        acumulado. <br><span class="benefit-subtit"> ✔ Mejora de la calidad
+                        del sueño</span> <br> Al relajar la musculatura y reducir el dolor, el masaje facilita un descanso más profundo y reparador, combatiendo el insomnio y mejorando la calidad del sueño.
+                        <br><span class="benefit-subtit">✔ Sensación de
+                        bienestar general</span> <br> El masaje activa la liberación de endorfinas, conocidas como las "hormonas de la felicidad", lo que genera una sensación de relajación y bienestar inmediato. <br>
+                    </p>
+                </div>
+            </details>
+            <details>
+                <summary>Beneficios a largo plazo<span class="icon">▼</span></summary>
+                <div class="benefit-content">
+                    <p>Si el masaje cervical se realiza de forma regular, sus efectos se potencian con el tiempo: <br><br> ✅
+                        <span class="benefit-long-plass">Menos episodios de dolor y rigidez en el cuello.</span> <br> ✅<span class="benefit-long-plass">Mejor movilidad y flexibilidad en la zona cervical.</span><br> ✅
+                        <span class="benefit-long-plass">Menos cefaleas y migrañas tensionales.</span> <br> ✅ <span class="benefit-long-plass">Mayor relajación y reducción del estrés acumulado.</span> <br> ✅
+                        <span class="benefit-long-plass">Corrección progresiva de malas posturas.</span> <br>
+                    </p>
+                </div>
+            </details>
+
+            <h2 class="tipo-masaje">Masaje con vendas</h2>
+            <p>El masaje con vendas es una técnica utilizada en estética y fisioterapia para mejorar la circulación, reducir la inflamación, moldear la figura y aliviar dolores musculares. Dependiendo del tipo de venda utilizada (frías, calientes, elásticas
+                o compresivas), este tratamiento puede tener efectos drenantes, reafirmantes, descontracturantes o anticelulíticos. <br><br> Se emplea ampliamente en centros de belleza, recuperación deportiva y tratamientos postoperatorios, ya que ayuda
+                a mejorar la salud de la piel y los tejidos profundos.
+            </p>
+            <details>
+                <summary>Beneficios físicos del masaje con vendas<span class="icon">▼</span></summary>
+                <div class="benefit-content">
+                    <p> <span class="benefit-subtit">✔ Mejora la circulación sanguínea y linfática</span> <br> Las vendas aplicadas con técnicas de compresión favorecen el retorno venoso y el drenaje linfático, reduciendo la retención de líquidos y mejorando
+                        la oxigenación de los tejidos. <br><span class="benefit-subtit">✔ Reducción de la inflamación y
+                        retención de líquidos</span> <br> Las vendas frías o compresivas ayudan a disminuir la hinchazón, ideal para piernas cansadas, edemas y tratamientos postoperatorios. <br> <span class="benefit-subtit">✔ Tonificación y firmeza de la
+                        piel</span> <br> El uso de vendas con principios activos reafirmantes contribuye a mejorar la elasticidad de la piel, reduciendo la flacidez y la celulitis. <br> <span class="benefit-subtit">✔
+                        Eliminación de toxinas y efecto detox</span> <br> Los vendajes estimulan el sistema linfático, ayudando a eliminar toxinas acumuladas y mejorando la apariencia de la piel. <br><span class="benefit-subtit">✔
+                        Relajación muscular y alivio del dolor </span> <br> En tratamientos fisioterapéuticos, las vendas térmicas o elásticas ayudan a relajar los músculos, reduciendo contracturas y mejorando la movilidad. <br> <span class="benefit-subtit">✔ Moldeado y reducción de medidas</span>
+                        <br> En tratamientos estéticos, las vendas frías y drenantes ayudan a reducir la apariencia de celulitis y moldear la figura, promoviendo la eliminación de líquidos retenidos. <br>
+                    </p>
+                </div>
+            </details>
+            <details>
+                <summary>Beneficios emocionales y psicológicos<span class="icon">▼</span></summary>
+                <div class="benefit-content">
+                    <p> <span class="benefit-subtit">✔ Sensación de bienestar y relajación </span> <br> El contacto de las vendas con la piel y su efecto terapéutico generan una sensación de alivio y bienestar, reduciendo el estrés y la fatiga. <br>
+                        <span class="benefit-subtit">✔ Mejora de la autoestima </span> <br> Al ayudar en la reducción de medidas y mejorar la apariencia de la piel, el masaje con vendas puede potenciar la confianza y la autoestima. <br> <span class="benefit-subtit">✔ Alivio del estrés y la ansiedad </span><br>                        El efecto refrescante o cálido de las vendas, combinado con el masaje, proporciona un estado de relajación profunda. <br>
+                    </p>
+                </div>
+            </details>
+            <details>
+                <summary>Tipos de vendajes y sus beneficios específicos<span class="icon">▼</span></summary>
+                <div class="benefit-content">
+                    <p>🔹 <span class="benefit-long-plass">Vendas frías:</span> Ideales para reducir inflamación, mejorar la circulación y tratar celulitis. <br> 🔹<span class="benefit-long-plass">Vendas calientes:</span> Favorecen la eliminación de toxinas
+                        y mejoran la circulación sanguínea. <br> 🔹<span class="benefit-long-plass">Vendas
+                        compresivas:</span> Ayudan a reducir edemas y mejorar el drenaje linfático. <br> 🔹 <span class="benefit-long-plass">Vendas elásticas:</span> Se utilizan en fisioterapia para aliviar dolores musculares y corregir posturas. <br>                        🔹<span class="benefit-long-plass">Vendas con
+                        principios activos:</span> Pueden contener ingredientes reafirmantes, anticelulíticos o hidratantes para potenciar sus efectos estéticos. <br>
+                    </p>
+                </div>
+            </details>
+            <details>
+                <summary>Beneficios físicos del masaje linfático <span class="icon">▼</span></summary>
+                <div class="benefit-content">
+                    <p></p>
+                </div>
+            </details>
+            <details>
+                <summary>Beneficios físicos del masaje linfático <span class="icon">▼</span></summary>
+                <div class="benefit-content">
+                    <p></p>
+                </div>
+            </details>
+            <details>
+                <summary>Beneficios físicos del masaje linfático <span class="icon">▼</span></summary>
+                <div class="benefit-content">
+                    <p></p>
+                </div>
+            </details>
+    </div>
+
+
+    <footer class="foter">
+        <div class="container-footer">
+            <div class="sesion-footer">
+                <h3>Siguenos</h3>
+                <div class="social-icons">
+                    <ul>
+                        <li id="whatsap"><a href=""><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+                        </li>
+                        <li id="facebook">
+                            <a href=""><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                        </li>
+                        <li id="instagram">
+                            <a href=""><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sesion-footer">
+                <h3>Sobre Nosotros</h3>
+                <p>En Terapia Natural, creemos que el bienestar comienza con la relajación. Nuestro espacio está diseñado para que desconectes del estrés diario y te sumerjas en un ambiente de calma y armonía.</p>
+            </div>
+            <div class="sesion-footer">
+                <h3>Enlaces</h3>
+                <ul>
+                    <li>
+                        <a href="inicio.php">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="servicios.php">Servicios</a>
+                    </li>
+                    <li>
+                        <a href="index.php">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sesion-footer">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><i class="fas fa-phone-alt"></i> Telefono: <a href="https://wa.me/5492645796824" target="_blank">+54 9 264 579-6824</a></li>
+                    <li><i class="fas fa-envelope"></i> Correo: <a href="mailto:terapianaturalcm@gmail.com" target="_blank">terapianaturalcm@gmail.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>2025 Terapia Natural. Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

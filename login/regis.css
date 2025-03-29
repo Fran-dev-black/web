@@ -1,0 +1,95 @@
+    body {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        /*background: linear-gradient( to bottom, #fff, #727272);*/
+        height: 100vh;
+    }
+    
+    .logo {
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        border-bottom: 2px solid #a19e9e;
+    }
+    
+    .logo img {
+        top: 0;
+        margin-top: 0;
+        width: 240px;
+        height: 140px;
+        background: transparent;
+        object-fit: cover;
+    }
+    
+    h2 {
+        margin: auto;
+        text-align: center;
+        margin-top: 12px;
+        padding-top: 4px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    
+    i {
+        text-align: center;
+    }
+    
+    .register-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+    }
+    
+    .input-box {
+        position: relative;
+        margin-bottom: 30px;
+    }
+    
+    .input-box input {
+        width: 100%;
+        padding: 10px;
+        /*background: transparent;*/
+        border: none;
+        padding-bottom: 10px;
+        border-left: 3px solid #5f5d5d;
+        border-radius: 5px;
+        border-bottom: 1px solid #000;
+        color: #000;
+        font-size: 15px;
+        outline: none;
+    }
+    
+    .input-box label {
+        position: absolute;
+        top: 35%;
+        left: 10px;
+        pointer-events: none;
+        transition: 0.5s;
+        transform: translateY(-50%);
+    }
+    
+    .input-box input:focus~label,
+    .input-box input:valid~label {
+        top: -10px;
+        left: 0;
+        /*color: #6B65FD;*/
+        font-size: 18px;
+    }
+    
+    .enviar-btn {
+        width: 100%;
+        padding: 10px;
+        background: #28a745;
+        border: none;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.5s;
+    }
+    
+    .enviar-btn:hover {
+        background: #218838;
+    }

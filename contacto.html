@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="ima/fondo2.png">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Masajista - San Juan - Contacto</title>
+</head>
+
+<body>
+<header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="inicio.php"><img src="ima/logo-pagina.png" alt=""></a>
+            </div>
+            <ul class="menu">
+                <li><a href="inicio.php"><i class="fas fa-home"></i>   Inicio</a></li>
+                <li><a href="servicios.php"><i class="fas fa-smile-beam"></i>  Servicios</a></li>
+                <li><a href="index.php"><i class="fas fa-phone-alt"></i>   Contacto</a></li>
+                <li><a href="login/turnos.php"><i class="fas fa-calendar-day"></i>  Turnos</a></li>
+                <li>
+                    <a href="beneficios.php"> <i class="fa-solid fa-water"></i> Beneficios</a>
+                </li>
+                <li><a href="login/logiin.php" class="iniciar-sesion"><i class="fa-solid fa-user-plus"></i>    Iniciar sesión</a></li>
+                <li> <button class="registrarse"><a href="login/registro.php"><i class="fa-solid fa-user-plus"></i>   Únete</a></button></li>
+            </ul>
+            <div class="hamburguesa" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector(".menu");
+            const hamburguesa = document.querySelector(".hamburguesa");
+            menu.classList.toggle("activado");
+            hamburguesa.classList.toggle("activado");
+        }
+    </script>
+
+    <div class="contactos-box">
+        <div class="mensaje-contact">
+
+            <p>Te dejamos nuestras redes para que puedan comunicarte con nosotros a trávez de nuestras redes sociales y puedas realizar tus consultas , que con gusto te responderemos.</p>
+        </div>
+        <div class="contactos-directos">
+            <ul>
+                <li>Telefono: <a href="">  +54 9 264 579 6824</a></li>
+                <li>Correo Electronico:<a href=""> TerapianaturaldTN@gmail.com</a></li>
+                <li>Direccion:<a href=""> Calle Proyectada B° Salomon Casa 20</a></li>
+                <li>
+                    <a href=""></a>
+                </li>
+            </ul>
+            <h3>Nuestras Redes Sociales</h3>
+            <ul>
+                <li><a href=""><i class="fa-brands fa-facebook"></i>  Facebook</a></li>
+                <li><a href=""><i class="fab fa-instagram-square" style="background: linear-gradient(45deg,#833ab4, #c13584, #e1306c, #f56040, #fd1d1d);"></i>  Instagram</a></li>
+                <li><a href=""><i class="fa-brands fa-twitter"></i> X</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="mapa">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d23158.1025943106!2d-68.53868840000001!3d-31.4262396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2sar!4v1738389623967!5m2!1ses!2sar" width="600" height="450" style="border:0;"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="margin-left:50px; padding-left:300px;"></iframe>
+    </div>
+    <h3 class="pree-horarios">Nuestros horarios de atencion:</h3>
+    <div class="horarios-atencion">
+        <table class="tabla-horarios">
+            <thead>
+                <th class="dias-semana">Dias:</th>
+                <th>Lunes</th>
+                <th>Martes</th>
+                <th>Miercoles</th>
+                <th>Jueves</th>
+                <th>Viernes</th>
+                <th rowspan="3">Sabado</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <th class="Horario-mañana">Mañana:</th>
+                    <td>8:00am a 12:00pm</td>
+                    <td>8:00am a 12:00pm</td>
+                    <td>9:00am a 12:00pm</td>
+                    <td>8:00am a 12:00pm</td>
+                    <td>8:00am a 12:00pm</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="horario-tarde">Tarde:</th>
+                    <td>14:00pm a 18:00pm</td>
+                    <td>15:00pm a 18:00pm</td>
+                    <td>14:00pm a 18:00pm</td>
+                    <td>14:00pm a 18:00pm</td>
+                    <td>14:30pm a 18:00pm</td>
+                    <td>9:00am a 13:00pm</td>
+                </tr>
+                <tr>
+                    <th class="Horario-nigth">Noche:</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td> 14:30 a 22:00pm</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <h2 class="title-consulta">Puedes realizarnos una consulta <i class="fa-regular fa-message" style="color:#555; font-size :1.1em;"></i></h2>
+    <div class="form-mensaje">
+        <div class="container-form">
+            <form action="login/mensajes.php" method="POST">
+                <label class="label" for="email">Correo:</label>
+                <input type="emial" id="email" name="email" required><br><br>
+
+                <label class="label" for="telefono">Telefono:</label>
+                <input type="number" id="telefono" name="telefono" required><br><br>
+
+                <label class="label" for="mensaje">Deja tu consulta:</label>
+                <input type="textarea" id="mensaje" name="mensaje" required><br><br>
+
+                <button type="submit" class="button">Enviar</button>
+            </form>
+        </div>
+        <div id="boton-de-turno">
+            <button id="boton-de-turno"><a href="login/turnos.php">Reserva tu Cita Ahora </a><i class="fas fa-long-arrow-alt-right" style="font-size :2em;  margin-top: 10px; color: #344e41;"></i></button>
+        </div>
+    </div>
+    <footer class="foter">
+        <div class="container-footer">
+            <div class="sesion-footer">
+                <h3>Siguenos</h3>
+                <div class="social-icons">
+                    <ul>
+                        <li id="whatsap"><a href=""><i class="fa-brands fa-whatsapp" aria-hidden="true" ></i></a>
+                        </li>
+                        <li id="facebook">
+                            <a href=""><i class="fa-brands fa-facebook-f" aria-hidden="true" ></i></a>
+                        </li>
+                        <li id="instagram">
+                            <a href=""><i class="fa-brands fa-instagram" aria-hidden="true" ></i></a>
+                        </li>
+                        <li id="maps">
+                            <a href=""><i class="fas fa-map-marker-alt" aria-hidden="true" ></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sesion-footer">
+                <h3>Sobre Nosotros</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil cum quidem iusto, consectetur nobis reprehenderit dolorum non repellat, in earum corrupti vitae eos similique commodi ducimus soluta odit maxime. Facere.</p>
+            </div>
+            <div class="sesion-footer">
+                <h3>Enlaces</h3>
+                <ul>
+                    <li>
+                        <a href="">inicio</a>
+                    </li>
+                    <li>
+                        <a href="">Servicios</a>
+                    </li>
+                    <li>
+                        <a href="">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sesion-footer">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Direccion: <a href="">Calle Proyecta, 20 San Juan, Argentina</a></li>
+                    <li><i class="fas fa-phone-alt"></i> Telefono: <a href="">+54 9 264 579-6824</a></li>
+                    <li><i class="fas fa-envelope"></i> Correo: <a href="">MasajistaFD@gmail.com</a></li>
+                    <li><i class="fas fa-city"></i> Ciudad:<a href="">San Juan</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>2025 MasajistaFD. Todos los derechos reservados</p>
+        </div>
+    </footer>
+</body>
+
+</html>
